@@ -27,13 +27,13 @@ import {
 export const CanopyContext = createContext({});
 
 const fetchUserSaplings = async saplingURL => {
-  const response = await get(`${saplingURL}/userSaplings`);
+  const response = await get(`${saplingURL}:80/userSaplings`);
   const userSaplingsResponse = response.json;
   return userSaplingsResponse;
 };
 
 const fetchConfigSaplings = async saplingURL => {
-  const response = await get(`${saplingURL}/configSaplings`);
+  const response = await get(`${saplingURL}:80/configSaplings`);
   const configSaplingsResponse = response.json;
   return configSaplingsResponse;
 };
