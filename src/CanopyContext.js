@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useLayoutEffect
+} from 'react';
 import PropTypes from 'prop-types';
 import { createBrowserHistory } from 'history';
 
@@ -90,7 +95,7 @@ export function CanopyProvider({
 
   window.$CANOPY.getKeys = () => keys;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.$CANOPY = window.$CANOPY || {};
     window.$CANOPY.registerApp = bootStrapFunction => {
       bootStrapFunction(document.querySelector('#sapling-container'));
@@ -102,7 +107,7 @@ export function CanopyProvider({
     });
   }, [saplingURL]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.$CANOPY.registerConfigSapling = (namespace, bootStrapFunction) => {
       bootStrapFunction();
       return setConfigSaplings(currentConfigSaplings => {
@@ -111,7 +116,7 @@ export function CanopyProvider({
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (sessionUser) {
       fetchUserSaplings(saplingURL).then(saplings => {
         mountSaplingStyles(saplings);
